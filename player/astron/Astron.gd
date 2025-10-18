@@ -15,6 +15,7 @@ var target_y_velocity: float = 0.0
 
 func _ready():
 	player_config = get_parent()
+	$Area2D.area_entered.connect(_on_attack_collision)
 
 
 func _physics_process(delta: float):
@@ -49,3 +50,12 @@ func _physics_process(delta: float):
 		$Sprite2D.flip_h = false
 	elif direction_x < 0:
 		$Sprite2D.flip_h = true
+
+
+func _on_attack_collision(other: Node2D):
+	if other.position.y < position.y:
+		die()
+
+
+func die():
+	queue_free()
