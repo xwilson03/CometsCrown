@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 
+@export var player_config: PlayerConfig
+
 @export var SPEED: float = 250.0
 @export var FLIGHT_VELOCITY: float = 200.0
 @export var INSTANT_FLIGHT_VELOCITY: float = 100.0
@@ -10,10 +12,15 @@ extends CharacterBody2D
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var target_y_velocity: float = 0.0
 
+
+func _ready():
+	player_config = get_parent()
+
+
 func _physics_process(delta: float):
 
 	# Handle jump
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed(player_config.jump_input):
 		velocity.y += -INSTANT_FLIGHT_VELOCITY
 		target_y_velocity += -FLIGHT_VELOCITY
 	
@@ -27,7 +34,7 @@ func _physics_process(delta: float):
 	velocity.y = clampf(velocity.y, -MAX_FLIGHT_SPEED, MAX_FLIGHT_SPEED)
 
 	# Handle movement
-	var direction_x: float = Input.get_axis("left", "right")
+	var direction_x: float = Input.get_axis(player_config.left_input, player_config.right_input)
 
 	if direction_x:
 		velocity.x = direction_x * SPEED
