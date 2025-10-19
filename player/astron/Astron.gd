@@ -17,6 +17,8 @@ func _ready():
 	player_config = get_parent()
 	$Area2D.area_entered.connect(_on_attack_collision)
 
+	spawn()
+
 
 func _physics_process(delta: float):
 
@@ -58,4 +60,11 @@ func _on_attack_collision(other: Node2D):
 
 
 func die():
-	queue_free()
+	hide()
+	await get_tree().create_timer(player_config.respawn_delay).timeout.connect(spawn)
+
+
+func spawn():
+	velocity = Vector2.ZERO
+	position = player_config.spawn_position
+	show()
