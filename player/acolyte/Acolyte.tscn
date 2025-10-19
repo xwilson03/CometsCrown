@@ -29,7 +29,6 @@ collision_mask = 4
 shape = SubResource("CapsuleShape2D_u6oph")
 
 [node name="Clone" type="Node2D" parent="CharacterBody2D"]
-rotation = 0.261799
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Clone"]
 texture = SubResource("PlaceholderTexture2D_1p5rr")
