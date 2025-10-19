@@ -71,7 +71,7 @@ acolyte2_jump={
 
 [physics]
 
-2d/default_gravity=1000.0
+2d/default_gravity=1960.0
 
 [rendering]
 

@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 @export var player_config: PlayerConfig
 
-@export var SPEED: float = 250.
+@export var SPEED: float = 250.0
+@export var X_ACCELERATION: float = 50.0
 @export var JUMP_VELOCITY: float = 500.0
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,21 +32,14 @@ func _physics_process(delta: float):
 		velocity.y += gravity * delta
 
 	# Handle movement
-	var direction_x: float = Input.get_axis(player_config.left_input, player_config.right_input)
-
-	if direction_x:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * 0.1)
+	var speed_x: float = Input.get_axis(player_config.left_input, player_config.right_input) * SPEED
+	velocity.x = move_toward(velocity.x, speed_x, X_ACCELERATION)
 
 	# Apply velocities and collision
 	move_and_slide()
 
 	# Face sprite towards movement direction
-	if direction_x > 0:
-		$Sprite2D.flip_h = false
-	elif direction_x < 0:
-		$Sprite2D.flip_h = true
+	$Sprite2D.flip_h = (speed_x < 0)
 
 
 func _on_attack_collision(other: Node2D):

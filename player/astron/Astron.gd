@@ -4,10 +4,13 @@ extends CharacterBody2D
 @export var player_config: PlayerConfig
 
 @export var SPEED: float = 250.0
+@export var X_ACCELERATION: float = 25.0
+
 @export var FLIGHT_VELOCITY: float = 200.0
-@export var INSTANT_FLIGHT_VELOCITY: float = 100.0
-@export var FLIGHT_ACCELERATION: float = 200.0
+@export var INSTANT_FLIGHT_VELOCITY: float = 125.0
+@export var FLIGHT_ACCELERATION: float = 450.0
 @export var MAX_FLIGHT_SPEED: float = 400.0
+@export var GRAVITY_MULTIPLIER: float = 1.0
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var target_y_velocity: float = 0.0
@@ -29,29 +32,25 @@ func _physics_process(delta: float):
 	
 	# Handle gravity
 	if not is_on_floor():
-		target_y_velocity += gravity * delta
+		target_y_velocity += gravity * GRAVITY_MULTIPLIER * delta
 
 	target_y_velocity = clampf(target_y_velocity, -MAX_FLIGHT_SPEED, MAX_FLIGHT_SPEED)
 	
-	velocity.y = move_toward(velocity.y, target_y_velocity, FLIGHT_ACCELERATION * delta)
+	if velocity.y > target_y_velocity:
+		velocity.y = move_toward(velocity.y, target_y_velocity, (FLIGHT_ACCELERATION + GRAVITY_MULTIPLIER) * delta)
+	elif velocity.y < target_y_velocity:
+		velocity.y = move_toward(velocity.y, target_y_velocity, FLIGHT_ACCELERATION * delta)
 	velocity.y = clampf(velocity.y, -MAX_FLIGHT_SPEED, MAX_FLIGHT_SPEED)
 
 	# Handle movement
-	var direction_x: float = Input.get_axis(player_config.left_input, player_config.right_input)
-
-	if direction_x:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * 0.1)
+	var speed_x: float = Input.get_axis(player_config.left_input, player_config.right_input) * SPEED
+	velocity.x = move_toward(velocity.x, speed_x, X_ACCELERATION)
 
 	# Apply velocities and collision
 	move_and_slide()
 
 	# Face sprite towards movement direction
-	if direction_x > 0:
-		$Sprite2D.flip_h = false
-	elif direction_x < 0:
-		$Sprite2D.flip_h = true
+	$Sprite2D.flip_h = (speed_x < 0)
 
 
 func _on_attack_collision(other: Area2D):
