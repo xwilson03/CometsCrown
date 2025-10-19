@@ -29,3 +29,15 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
 shape = SubResource("CapsuleShape2D_u6oph")
+
+[node name="Clone" type="Node2D" parent="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Clone"]
+texture = SubResource("PlaceholderTexture2D_1p5rr")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D/Clone"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Clone/Area2D"]
+shape = SubResource("CapsuleShape2D_u6oph")
