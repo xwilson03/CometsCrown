@@ -65,26 +65,26 @@ func _physics_process(delta: float):
 	# Apply velocities and collision
 	move_and_slide()
 	
-	if (global_position.x < $Sprite2D.texture.get_width() / 2):
+	if (global_position.x < $Sprite2D.texture.get_width() / 2.0):
 		global_position = Vector2(global_position.x + viewport_size.x, global_position.y)
-	if (global_position.x > viewport_size.x - $Sprite2D.texture.get_width() / 2):
+	if (global_position.x > viewport_size.x - $Sprite2D.texture.get_width() / 2.0):
 		global_position = Vector2(global_position.x - viewport_size.x, global_position.y)
-	if (global_position.y < $Sprite2D.texture.get_height() / 2):
+	if (global_position.y < $Sprite2D.texture.get_height() / 2.0):
 		global_position = Vector2(global_position.x, global_position.y + viewport_size.y)
-	if (global_position.y > viewport_size.y - $Sprite2D.texture.get_height() / 2):
+	if (global_position.y > viewport_size.y - $Sprite2D.texture.get_height() / 2.0):
 		global_position = Vector2(global_position.x, global_position.y - viewport_size.y)
 	
 	show_clone = false
-	if (global_position.x < clone_sprite.texture.get_width() / 2):
+	if (global_position.x < clone_sprite.texture.get_width() / 2.0):
 		clone.global_position = Vector2(global_position.x + viewport_size.x, global_position.y)
 		show_clone = true
-	if (global_position.x > viewport_size.x - clone_sprite.texture.get_width() / 2):
+	if (global_position.x > viewport_size.x - clone_sprite.texture.get_width() / 2.0):
 		clone.global_position = Vector2(global_position.x - viewport_size.x, global_position.y)
 		show_clone = true
-	if (global_position.y < clone_sprite.texture.get_height() / 2):
+	if (global_position.y < clone_sprite.texture.get_height() / 2.0):
 		clone.global_position = Vector2(global_position.x, global_position.y + viewport_size.y)
 		show_clone = true
-	if (global_position.y > viewport_size.y - clone_sprite.texture.get_height() / 2):
+	if (global_position.y > viewport_size.y - clone_sprite.texture.get_height() / 2.0):
 		clone.global_position = Vector2(global_position.x, global_position.y - viewport_size.y)
 		show_clone = true
 
