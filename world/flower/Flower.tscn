@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxj4c1twpwp2r"]
+
+[ext_resource type="PackedScene" uid="uid://dodxydpdm7hgr" path="res://world/flower/Berry.tscn" id="1_sr4vn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kqfar"]
+size = Vector2(128, 30)
+
+[node name="Flower" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_kqfar")
+
+[node name="Berries" type="Node2D" parent="."]
+
+[node name="Berry1" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(0, -48)
+
+[node name="Berry2" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(-16, -32)
+
+[node name="Berry3" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(16, -32)
+
+[node name="Berry4" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(-32, -16)
+
+[node name="Berry5" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(0, -16)
+
+[node name="Berry6" parent="Berries" instance=ExtResource("1_sr4vn")]
+position = Vector2(32, -16)
