@@ -92,21 +92,21 @@ position = Vector2(1440, 624)
 position = Vector2(960, 752)
 
 [node name="Astron" parent="." instance=ExtResource("2_2yhwf")]
-position = Vector2(192, 1088)
+position = Vector2(192, 1104)
 left_input = "astron_left"
 right_input = "astron_right"
 jump_input = "astron_jump"
 respawn_delay = 2.0
 
 [node name="Acolyte1" parent="." instance=ExtResource("2_n41xe")]
-position = Vector2(256, 1104)
+position = Vector2(256, 1120)
 left_input = "acolyte1_left"
 right_input = "acolyte1_right"
 jump_input = "acolyte1_jump"
 respawn_delay = 2.0
 
 [node name="Acolyte2" parent="." instance=ExtResource("2_n41xe")]
-position = Vector2(320, 1104)
+position = Vector2(320, 1120)
 left_input = "acolyte2_left"
 right_input = "acolyte2_right"
 jump_input = "acolyte2_jump"
