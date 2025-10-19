@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp7fixd5c7n45"]
+[gd_scene load_steps=12 format=3 uid="uid://dp7fixd5c7n45"]
 
 [ext_resource type="Texture2D" uid="uid://bicjoy2jm4ad5" path="res://world/ground.png" id="1_tqlvy"]
 [ext_resource type="PackedScene" uid="uid://c0cixa5xl22qy" path="res://player/astron/Astron.tscn" id="2_2yhwf"]
 [ext_resource type="PackedScene" uid="uid://de1dyowirdli0" path="res://player/acolyte/Acolyte.tscn" id="2_n41xe"]
+[ext_resource type="Texture2D" uid="uid://cniuvyysk8ixd" path="res://world/background.png" id="3_340dq"]
 [ext_resource type="PackedScene" uid="uid://dxj4c1twpwp2r" path="res://world/flower/Flower.tscn" id="4_2o4wu"]
+[ext_resource type="Texture2D" uid="uid://bvd3m8m6ktudt" path="res://player/astron/blue_astron_sprite-removebg-preview.png" id="4_bu5su"]
+[ext_resource type="Texture2D" uid="uid://cpyfurm2iuglg" path="res://player/acolyte/blue_acolyte_sprite.png" id="5_clfbn"]
+[ext_resource type="Texture2D" uid="uid://dskq8q85anufr" path="res://player/astron/yellow_astron_sprite-removebg-preview.png" id="7_ov0ce"]
+[ext_resource type="Texture2D" uid="uid://8e618gknfifa" path="res://player/acolyte/yellow_acolyte_sprite.png" id="8_irolt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxpvn"]
 texture = ExtResource("1_tqlvy")
@@ -91,23 +96,114 @@ position = Vector2(1440, 624)
 [node name="Flower9" parent="World/Flowers" instance=ExtResource("4_2o4wu")]
 position = Vector2(960, 752)
 
-[node name="Astron" parent="." instance=ExtResource("2_2yhwf")]
+[node name="Sprite2D" type="Sprite2D" parent="World"]
+z_index = -1
+position = Vector2(960, 584)
+scale = Vector2(3.1, 3.8)
+texture = ExtResource("3_340dq")
+
+[node name="BlueTeam" type="Node2D" parent="."]
+
+[node name="Astron" parent="BlueTeam" instance=ExtResource("2_2yhwf")]
 position = Vector2(192, 1104)
 left_input = "astron_left"
 right_input = "astron_right"
 jump_input = "astron_jump"
 respawn_delay = 2.0
 
-[node name="Acolyte1" parent="." instance=ExtResource("2_n41xe")]
+[node name="Sprite2D" parent="BlueTeam/Astron/CharacterBody2D" index="1"]
+position = Vector2(8.475, 0.525)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("4_bu5su")
+
+[node name="Sprite2D" parent="BlueTeam/Astron/CharacterBody2D/Clone" index="0"]
+position = Vector2(8.475, 0.525)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("4_bu5su")
+
+[node name="Acolyte1" parent="BlueTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(256, 1120)
 left_input = "acolyte1_left"
 right_input = "acolyte1_right"
 jump_input = "acolyte1_jump"
 respawn_delay = 2.0
 
-[node name="Acolyte2" parent="." instance=ExtResource("2_n41xe")]
+[node name="Sprite2D" parent="BlueTeam/Acolyte1/CharacterBody2D" index="1"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_clfbn")
+
+[node name="Sprite2D" parent="BlueTeam/Acolyte1/CharacterBody2D/Clone" index="0"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_clfbn")
+
+[node name="Acolyte2" parent="BlueTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(320, 1120)
 left_input = "acolyte2_left"
 right_input = "acolyte2_right"
 jump_input = "acolyte2_jump"
 respawn_delay = 2.0
+
+[node name="Sprite2D" parent="BlueTeam/Acolyte2/CharacterBody2D" index="1"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_clfbn")
+
+[node name="Sprite2D" parent="BlueTeam/Acolyte2/CharacterBody2D/Clone" index="0"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_clfbn")
+
+[node name="YellowTeam" type="Node2D" parent="."]
+position = Vector2(1488, 0)
+
+[node name="Astron" parent="YellowTeam" instance=ExtResource("2_2yhwf")]
+position = Vector2(240, 1104)
+left_input = "astron_left"
+right_input = "astron_right"
+jump_input = "astron_jump"
+respawn_delay = 2.0
+
+[node name="Sprite2D" parent="YellowTeam/Astron/CharacterBody2D" index="1"]
+position = Vector2(8.475, 0.525)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("7_ov0ce")
+
+[node name="Sprite2D" parent="YellowTeam/Astron/CharacterBody2D/Clone" index="0"]
+position = Vector2(8.475, 0.525)
+scale = Vector2(0.51, 0.51)
+texture = ExtResource("7_ov0ce")
+
+[node name="Acolyte1" parent="YellowTeam" instance=ExtResource("2_n41xe")]
+position = Vector2(112, 1120)
+left_input = "acolyte1_left"
+right_input = "acolyte1_right"
+jump_input = "acolyte1_jump"
+respawn_delay = 2.0
+
+[node name="Sprite2D" parent="YellowTeam/Acolyte1/CharacterBody2D" index="1"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_irolt")
+
+[node name="Sprite2D" parent="YellowTeam/Acolyte1/CharacterBody2D/Clone" index="0"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_irolt")
+
+[node name="Acolyte2" parent="YellowTeam" instance=ExtResource("2_n41xe")]
+position = Vector2(176, 1120)
+left_input = "acolyte2_left"
+right_input = "acolyte2_right"
+jump_input = "acolyte2_jump"
+respawn_delay = 2.0
+
+[node name="Sprite2D" parent="YellowTeam/Acolyte2/CharacterBody2D" index="1"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_irolt")
+
+[node name="Sprite2D" parent="YellowTeam/Acolyte2/CharacterBody2D/Clone" index="0"]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("8_irolt")
+
+[editable path="BlueTeam/Astron"]
+[editable path="BlueTeam/Acolyte1"]
+[editable path="BlueTeam/Acolyte2"]
+[editable path="YellowTeam/Astron"]
+[editable path="YellowTeam/Acolyte1"]
+[editable path="YellowTeam/Acolyte2"]
