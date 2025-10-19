@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY: float = 750.0
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var alive: bool = true
 
 
 func _ready():
@@ -20,6 +21,9 @@ func _ready():
 
 
 func _physics_process(delta: float):
+
+	if not alive:
+		return
 
 	# Handle jump
 	if Input.is_action_just_pressed(player_config.jump_input) and is_on_floor():
@@ -50,11 +54,16 @@ func _on_attack_collision(other: Node2D):
 
 
 func die():
+	velocity = Vector2.ZERO
+	global_position = spawn_position
 	hide()
-	get_tree().create_timer(player_config.respawn_delay).timeout.connect(spawn)
+	alive = false
+	set_physics_process(false)
+	await get_tree().create_timer(player_config.respawn_delay).timeout
+	spawn()
 
 
 func spawn():
-	velocity = Vector2.ZERO
-	global_position = spawn_position
 	show()
+	alive = true
+	set_physics_process(true)

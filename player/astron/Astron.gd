@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var target_y_velocity: float = 0.0
-
+var alive: bool = true
 
 func _ready():
 	player_config = get_parent()
@@ -26,6 +26,9 @@ func _ready():
 
 
 func _physics_process(delta: float):
+
+	if not alive:
+		return
 
 	# Handle jump
 	if Input.is_action_just_pressed(player_config.jump_input):
@@ -61,11 +64,16 @@ func _on_attack_collision(other: Area2D):
 
 
 func die():
+	velocity = Vector2.ZERO
+	global_position = spawn_position
+	alive = false
+	set_physics_process(false)
 	hide()
-	get_tree().create_timer(player_config.respawn_delay).timeout.connect(spawn)
+	await get_tree().create_timer(player_config.respawn_delay).timeout
+	spawn()
 
 
 func spawn():
-	velocity = Vector2.ZERO
-	global_position = spawn_position
 	show()
+	alive = true
+	set_physics_process(true)
