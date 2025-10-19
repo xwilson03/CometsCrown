@@ -160,6 +160,7 @@ left_input = "yastron_left"
 right_input = "yastron_right"
 jump_input = "yastron_jump"
 respawn_delay = 2.0
+team = 1
 
 [node name="Sprite2D" parent="YellowTeam/Astron/CharacterBody2D" index="1"]
 position = Vector2(8.475, 0.525)
@@ -177,6 +178,7 @@ left_input = "yacolyte1_left"
 right_input = "yacolyte1_right"
 jump_input = "yacolyte1_jump"
 respawn_delay = 2.0
+team = 1
 
 [node name="Sprite2D" parent="YellowTeam/Acolyte1/CharacterBody2D" index="1"]
 scale = Vector2(0.33, 0.33)
@@ -192,6 +194,7 @@ left_input = "yacolyte2_left"
 right_input = "yacolyte2_right"
 jump_input = "yacolyte2_jump"
 respawn_delay = 2.0
+team = 1
 
 [node name="Sprite2D" parent="YellowTeam/Acolyte2/CharacterBody2D" index="1"]
 scale = Vector2(0.33, 0.33)

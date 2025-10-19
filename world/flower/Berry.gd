@@ -12,11 +12,11 @@ func relinquish(other: Area2D):
 		root = root.get_parent()
 	
 	var player_config: PlayerConfig = root.get_parent() as PlayerConfig
-	if player_config.team == 1:
-		print("red score!")
-		Globals.red_score += 1
-	else:
-		print("blue score!")
+	if player_config.team == 0:
 		Globals.blue_score += 1
+		print("blue score! new:", Globals.blue_score)
+	else:
+		Globals.yellow_score += 1
+		print("yellow score! new:", Globals.yellow_score)		
 	
 	queue_free()
