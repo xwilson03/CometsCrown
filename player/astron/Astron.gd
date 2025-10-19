@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var INSTANT_FLIGHT_VELOCITY: float = 125.0
 @export var FLIGHT_ACCELERATION: float = 450.0
 @export var MAX_FLIGHT_SPEED: float = 400.0
-@export var GRAVITY_MULTIPLIER: float = 1.0
+@export var GRAVITY_MULTIPLIER: float = 2.0
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var target_y_velocity: float = 0.0
@@ -34,13 +34,13 @@ func _physics_process(delta: float):
 	if not is_on_floor():
 		target_y_velocity += gravity * GRAVITY_MULTIPLIER * delta
 
-	target_y_velocity = clampf(target_y_velocity, -MAX_FLIGHT_SPEED, MAX_FLIGHT_SPEED)
+	target_y_velocity = clampf(target_y_velocity, -MAX_FLIGHT_SPEED, INF)
 	
 	if velocity.y > target_y_velocity:
 		velocity.y = move_toward(velocity.y, target_y_velocity, (FLIGHT_ACCELERATION + GRAVITY_MULTIPLIER) * delta)
 	elif velocity.y < target_y_velocity:
 		velocity.y = move_toward(velocity.y, target_y_velocity, FLIGHT_ACCELERATION * delta)
-	velocity.y = clampf(velocity.y, -MAX_FLIGHT_SPEED, MAX_FLIGHT_SPEED)
+	velocity.y = clampf(velocity.y, -MAX_FLIGHT_SPEED, INF)
 
 	# Handle movement
 	var speed_x: float = Input.get_axis(player_config.left_input, player_config.right_input) * SPEED
