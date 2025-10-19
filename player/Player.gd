@@ -72,7 +72,7 @@ func handle_clone():
 		global_position = Vector2(global_position.x - viewport_size.x, global_position.y)
 	if (global_position.y < $Sprite2D.texture.get_height() / 2.0):
 		global_position = Vector2(global_position.x, global_position.y + viewport_size.y)
-	if (global_position.y > viewport_size.y - $Sprite2D.texture.get_height() / 2.0):
+	if (global_position.y > viewport_size.y + $Sprite2D.texture.get_height() / 2.0):
 		global_position = Vector2(global_position.x, global_position.y - viewport_size.y)
 	
 	show_clone = false
