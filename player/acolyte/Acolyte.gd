@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var player_config: PlayerConfig
+@export var spawn_position: Vector2
 
 @export var SPEED: float = 250.0
 @export var X_ACCELERATION: float = 50.0
@@ -12,6 +13,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	player_config = get_parent()
+	spawn_position = global_position
 	$Area2D.area_entered.connect(_on_attack_collision)
 
 	spawn()
@@ -54,5 +56,5 @@ func die():
 
 func spawn():
 	velocity = Vector2.ZERO
-	position = player_config.spawn_position
+	global_position = spawn_position
 	show()
