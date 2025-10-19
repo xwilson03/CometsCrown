@@ -54,14 +54,14 @@ func _physics_process(delta: float):
 		$Sprite2D.flip_h = true
 
 
-func _on_attack_collision(other: Node2D):
-	if other.position.y < position.y:
+func _on_attack_collision(other: Area2D):
+	if other.global_position.y < global_position.y:
 		die()
 
 
 func die():
 	hide()
-	await get_tree().create_timer(player_config.respawn_delay).timeout.connect(spawn)
+	get_tree().create_timer(player_config.respawn_delay).timeout.connect(spawn)
 
 
 func spawn():
