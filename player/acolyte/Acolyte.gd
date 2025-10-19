@@ -11,11 +11,21 @@ extends CharacterBody2D
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var alive: bool = true
 
+var clone: Node2D
+var clone_sprite: Sprite2D
+var show_clone: bool = false
+var viewport_size: Vector2
 
 func _ready():
 	player_config = get_parent()
 	spawn_position = global_position
+	viewport_size = get_viewport_rect().size
+	
 	$Area2D.area_entered.connect(_on_attack_collision)
+	
+	clone = $Clone
+	clone_sprite = clone.get_child(0)
+	clone.hide()
 
 	spawn()
 
@@ -43,6 +53,31 @@ func _physics_process(delta: float):
 
 	# Apply velocities and collision
 	move_and_slide()
+
+	if (global_position.x < $Sprite2D.texture.get_width() / 2):
+		global_position = Vector2(global_position.x + viewport_size.x, global_position.y)
+	if (global_position.x > viewport_size.x - $Sprite2D.texture.get_width() / 2):
+		global_position = Vector2(global_position.x - viewport_size.x, global_position.y)
+	if (global_position.y < $Sprite2D.texture.get_height() / 2):
+		global_position = Vector2(global_position.x, global_position.y + viewport_size.y)
+	if (global_position.y > viewport_size.y - $Sprite2D.texture.get_height() / 2):
+		global_position = Vector2(global_position.x, global_position.y - viewport_size.y)
+	
+	show_clone = false
+	if (global_position.x < clone_sprite.texture.get_width() / 2):
+		clone.global_position = Vector2(global_position.x + viewport_size.x, global_position.y)
+		show_clone = true
+	if (global_position.x > viewport_size.x - clone_sprite.texture.get_width() / 2):
+		clone.global_position = Vector2(global_position.x - viewport_size.x, global_position.y)
+		show_clone = true
+	if (global_position.y < clone_sprite.texture.get_height() / 2):
+		clone.global_position = Vector2(global_position.x, global_position.y + viewport_size.y)
+		show_clone = true
+	if (global_position.y > viewport_size.y - clone_sprite.texture.get_height() / 2):
+		clone.global_position = Vector2(global_position.x, global_position.y - viewport_size.y)
+		show_clone = true
+
+	clone.set_visible(show_clone)
 
 	# Face sprite towards movement direction
 	$Sprite2D.flip_h = (speed_x < 0)
