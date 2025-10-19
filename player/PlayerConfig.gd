@@ -7,3 +7,4 @@ class_name PlayerConfig
 @export var jump_input: String
 
 @export var respawn_delay: float
+@export var team: int

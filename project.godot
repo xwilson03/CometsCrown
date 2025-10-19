@@ -72,8 +72,8 @@ acolyte2_jump={
 [layer_names]
 
 2d_physics/layer_1="World"
-2d_physics/layer_2="PlayerColliders"
-2d_physics/layer_3="PlayerHitboxes"
+2d_physics/layer_2="InteractColliders"
+2d_physics/layer_3="AttackColliders"
 
 [physics]
 
