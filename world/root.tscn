@@ -106,9 +106,9 @@ texture = ExtResource("3_340dq")
 
 [node name="Astron" parent="BlueTeam" instance=ExtResource("2_2yhwf")]
 position = Vector2(192, 1104)
-left_input = "astron_left"
-right_input = "astron_right"
-jump_input = "astron_jump"
+left_input = "bastron_left"
+right_input = "bastron_right"
+jump_input = "bastron_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="BlueTeam/Astron/CharacterBody2D" index="1"]
@@ -123,9 +123,9 @@ texture = ExtResource("4_bu5su")
 
 [node name="Acolyte1" parent="BlueTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(256, 1120)
-left_input = "acolyte1_left"
-right_input = "acolyte1_right"
-jump_input = "acolyte1_jump"
+left_input = "bacolyte1_left"
+right_input = "bacolyte1_right"
+jump_input = "bacolyte1_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="BlueTeam/Acolyte1/CharacterBody2D" index="1"]
@@ -138,9 +138,9 @@ texture = ExtResource("5_clfbn")
 
 [node name="Acolyte2" parent="BlueTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(320, 1120)
-left_input = "acolyte2_left"
-right_input = "acolyte2_right"
-jump_input = "acolyte2_jump"
+left_input = "bacolyte2_left"
+right_input = "bacolyte2_right"
+jump_input = "bacolyte2_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="BlueTeam/Acolyte2/CharacterBody2D" index="1"]
@@ -156,9 +156,9 @@ position = Vector2(1488, 0)
 
 [node name="Astron" parent="YellowTeam" instance=ExtResource("2_2yhwf")]
 position = Vector2(240, 1104)
-left_input = "astron_left"
-right_input = "astron_right"
-jump_input = "astron_jump"
+left_input = "yastron_left"
+right_input = "yastron_right"
+jump_input = "yastron_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="YellowTeam/Astron/CharacterBody2D" index="1"]
@@ -173,9 +173,9 @@ texture = ExtResource("7_ov0ce")
 
 [node name="Acolyte1" parent="YellowTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(112, 1120)
-left_input = "acolyte1_left"
-right_input = "acolyte1_right"
-jump_input = "acolyte1_jump"
+left_input = "yacolyte1_left"
+right_input = "yacolyte1_right"
+jump_input = "yacolyte1_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="YellowTeam/Acolyte1/CharacterBody2D" index="1"]
@@ -188,9 +188,9 @@ texture = ExtResource("8_irolt")
 
 [node name="Acolyte2" parent="YellowTeam" instance=ExtResource("2_n41xe")]
 position = Vector2(176, 1120)
-left_input = "acolyte2_left"
-right_input = "acolyte2_right"
-jump_input = "acolyte2_jump"
+left_input = "yacolyte2_left"
+right_input = "yacolyte2_right"
+jump_input = "yacolyte2_jump"
 respawn_delay = 2.0
 
 [node name="Sprite2D" parent="YellowTeam/Acolyte2/CharacterBody2D" index="1"]
